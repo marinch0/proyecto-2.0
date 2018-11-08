@@ -21,7 +21,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     String idFun,nomFun;
     
-    public MenuPrincipal(String idFunc,String nomFunc) {
+    public MenuPrincipal(String idFunc,String nomFunc) {// se pone todo de color blanco y se agrega el icono 
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
@@ -190,6 +190,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMRegistro.setText("Registro");
 
+        jMIFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMIFuncionario.setBackground(new java.awt.Color(255, 255, 255));
         jMIFuncionario.setText("Funcionario");
         jMIFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +200,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIFuncionario);
 
+        jMIAseguradora.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMIAseguradora.setBackground(new java.awt.Color(255, 255, 255));
         jMIAseguradora.setText("Aseguradora");
         jMIAseguradora.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +210,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIAseguradora);
 
+        jMIEstudiante.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMIEstudiante.setBackground(new java.awt.Color(255, 255, 255));
         jMIEstudiante.setText("Estudiante");
         jMIEstudiante.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +220,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIEstudiante);
 
+        jMIConductor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMIConductor.setBackground(new java.awt.Color(255, 255, 255));
         jMIConductor.setText("Conductor");
         jMIConductor.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +230,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIConductor);
 
+        jMIAsistente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMIAsistente.setBackground(new java.awt.Color(255, 255, 255));
         jMIAsistente.setText("Asistente");
         jMIAsistente.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +240,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMRegistro.add(jMIAsistente);
 
+        jMIVehiculo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         jMIVehiculo.setBackground(new java.awt.Color(255, 255, 255));
         jMIVehiculo.setText("Vehiculo");
         jMIVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -321,22 +327,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMIFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFuncionarioActionPerformed
-        Funcionario miVent = new Funcionario(idFun, nomFun);
+        Funcionario miVent = new Funcionario(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMIFuncionarioActionPerformed
 
     private void jBVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVehiculoActionPerformed
-        Vehiculo miVent = new Vehiculo(idFun, nomFun, null);
+        Vehiculo miVent = new Vehiculo(idFun, nomFun, null);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jBVehiculoActionPerformed
 
     private void jBConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConductorActionPerformed
-        Conductor miVent = new Conductor(idFun, nomFun);
+        Conductor miVent = new Conductor(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jBConductorActionPerformed
 
     private void jBAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAseguradoraActionPerformed
-        Aseguradora miVent;
+        Aseguradora miVent;//se abre la ventana
         try {
             miVent = new Aseguradora(idFun, nomFun);
             miVent.setVisible(true);
@@ -351,17 +357,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBReporteActionPerformed
 
     private void jBEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEstudianteActionPerformed
-        Estudiante miVent = new Estudiante(idFun, nomFun);
+        Estudiante miVent = new Estudiante(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jBEstudianteActionPerformed
 
     private void jBFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFuncionarioActionPerformed
-        Funcionario miVent = new Funcionario(idFun, nomFun);
+        Funcionario miVent = new Funcionario(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jBFuncionarioActionPerformed
 
     private void jBAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAsistenteActionPerformed
-        Asistente miVent = new Asistente(idFun, nomFun);
+        Asistente miVent = new Asistente(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jBAsistenteActionPerformed
 
@@ -371,7 +377,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMIAseguradoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAseguradoraActionPerformed
         Aseguradora miVent;
-        try {
+        try {//se abre la ventana
             miVent = new Aseguradora(idFun, nomFun);
             miVent.setVisible(true);
         } catch (SQLException ex) {
@@ -381,32 +387,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAseguradoraActionPerformed
 
     private void jMIEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIEstudianteActionPerformed
-        Estudiante miVent = new Estudiante(idFun, nomFun);
+        Estudiante miVent = new Estudiante(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMIEstudianteActionPerformed
 
     private void jMIConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConductorActionPerformed
-        Conductor miVent = new Conductor(idFun, nomFun);
+        Conductor miVent = new Conductor(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMIConductorActionPerformed
 
     private void jMIAsistenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAsistenteActionPerformed
-        Asistente miVent = new Asistente(idFun, nomFun);
+        Asistente miVent = new Asistente(idFun, nomFun);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMIAsistenteActionPerformed
 
     private void jMIVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIVehiculoActionPerformed
-        Vehiculo miVent = new Vehiculo(idFun, nomFun,null);
+        Vehiculo miVent = new Vehiculo(idFun, nomFun,null);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMIVehiculoActionPerformed
 
     private void jMISOATActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISOATActionPerformed
-        SOAT miVent = new SOAT(idFun, nomFun,null,false);
+        SOAT miVent = new SOAT(idFun, nomFun,null,false);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMISOATActionPerformed
 
     private void jMITecnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMITecnoActionPerformed
-        Tecnomecanica miVent = new Tecnomecanica(idFun, nomFun,null,false);
+        Tecnomecanica miVent = new Tecnomecanica(idFun, nomFun,null,false);//se abre la ventana
         miVent.setVisible(true);
     }//GEN-LAST:event_jMITecnoActionPerformed
 

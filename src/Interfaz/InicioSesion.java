@@ -22,7 +22,7 @@ public class InicioSesion extends javax.swing.JFrame {
     String usuario,clave;
     FuncionarioDAO DBFuncionario;
     
-    public InicioSesion() {
+    public InicioSesion() {//se pone todo en blanco y se agrega el icono 
         initComponents();
          setLocationRelativeTo(null);
         this.setResizable(false);
@@ -36,7 +36,7 @@ public class InicioSesion extends javax.swing.JFrame {
          }
     }
     
-    public void abrirMenuPrincipal(){
+    public void abrirMenuPrincipal(){//se valida el ingreso de las dos casillas
         if(jTFUsuario.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "No Ingreso Usuario");
         }else if(jPFClave.getText().isEmpty()){
@@ -46,7 +46,7 @@ public class InicioSesion extends javax.swing.JFrame {
             clave=jPFClave.getText();
             
             ArrayList<String> transDatos = new ArrayList<>();
-            
+           // se buscan los datos en la base de datos 
             transDatos = DBFuncionario.buscarFuncionarioLogin(usuario, clave);
             
             if(transDatos==null || transDatos.isEmpty()){

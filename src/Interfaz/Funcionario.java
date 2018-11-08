@@ -21,7 +21,7 @@ import modelo.FuncionarioVO;
  */
 public class Funcionario extends javax.swing.JFrame {
 
-    //declaración de variables   
+    //declaración de variabless
     String idFunc,nombreFunc,apellidoFunc,celularFunc,direccionFunc,correoFunc,usuarioFunc,ClaveFunc;
     int fila,eleccion;
     boolean estadoFunc;
@@ -34,7 +34,7 @@ public class Funcionario extends javax.swing.JFrame {
     
     
     
-    //metodo constructor
+    //metodo constructorr
     public Funcionario(String idFunc,String nomFunc) {
         initComponents();
         setLocationRelativeTo(null);
@@ -58,7 +58,7 @@ public class Funcionario extends javax.swing.JFrame {
          }
     }
 
-     public void bloquear(){
+     public void bloquear(){//bloquea las cajas para evitar su uso
         jTFID.setEnabled(false);
         jTFNombre.setEnabled(false);
         jTFApellido.setEnabled(false);
@@ -74,7 +74,7 @@ public class Funcionario extends javax.swing.JFrame {
         jBBuscar.setEnabled(true);
     }
     
-    public void activar(){
+    public void activar(){// activa las cajas para su uso
         jTFID.setEnabled(true);
         jTFNombre.setEnabled(true);
         jTFApellido.setEnabled(true);
@@ -93,7 +93,7 @@ public class Funcionario extends javax.swing.JFrame {
     }
     
      public void llamarDatosTabla(){
-        
+        //se crean los parametros de la tabla y el tamaño correspondiente de cada una 
         modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
@@ -113,10 +113,10 @@ public class Funcionario extends javax.swing.JFrame {
         this.jTFuncionario.getColumn(jTFuncionario.getColumnName(7)).setMinWidth(0);
         this.jTFuncionario.getColumn(jTFuncionario.getColumnName(7)).setMaxWidth(0);
         
-        listaFunc = DBFuncionario.listaFuncionario();
+        listaFunc = DBFuncionario.listaFuncionario();//busca los datos en la base de datos desde conexion 
         
         for (int i = 0; i < listaFunc.size(); i=i+8) {
-            
+            //ingresa los datos a la tabla
             datos[0]=listaFunc.get(i);
             datos[1]=listaFunc.get(i+1);
             datos[2]=listaFunc.get(i+2);
@@ -135,7 +135,7 @@ public class Funcionario extends javax.swing.JFrame {
         boolean validar= validarDatos();
         
          if(validar!=false)
-        {
+        {//mete los datos de las cajas a variables para despues ser enviado a la conexion 
             idFunc = jTFID.getText();
             nombreFunc = jTFNombre.getText();
             apellidoFunc = jTFApellido.getText();
@@ -175,7 +175,7 @@ public class Funcionario extends javax.swing.JFrame {
         return false;
     }
       
-      public void mostrarDatos(){
+      public void mostrarDatos(){//se cargan los datos a las casillas
             jTFID.setText(jTFuncionario.getValueAt(fila, 0).toString());
             jTFNombre.setText(jTFuncionario.getValueAt(fila, 1).toString());
             jTFApellido.setText(jTFuncionario.getValueAt(fila, 2).toString());
@@ -185,7 +185,7 @@ public class Funcionario extends javax.swing.JFrame {
             jTFUsuario.setText(jTFuncionario.getValueAt(fila, 6).toString());
       }
       
-       public boolean validarDatos(){
+       public boolean validarDatos(){//se validan las cajas para impedir cajas vacias 
          
          if(jTFID.getText().isEmpty())
          {
@@ -232,7 +232,7 @@ public class Funcionario extends javax.swing.JFrame {
          
      }
        
-       public void limpiarCajas(){
+       public void limpiarCajas(){//se ponen las cajas en ceros 
          jTFID.setText(null);
          jTFNombre.setText(null);
          jTFApellido.setText(null);
@@ -522,13 +522,13 @@ public class Funcionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        activar();
+        activar();//se activan las cajas 
         jTFID.requestFocus();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
           if(validacionGuardar==false){
-        
+        //se llaman los metodos para enviar todo a conexion y limpiar las cajas ademas de introducir los datos en la tabla 
        boolean validarGuardar = guardarDatos();
        if(validarGuardar!=false){
            bloquear();
@@ -555,7 +555,7 @@ public class Funcionario extends javax.swing.JFrame {
         if(fila!=-1){
             eleccion = Integer.parseInt(JOptionPane.showInputDialog("Seleccione una opción para editar:\n1. Editar datos\n2. Editar Clave"));
             switch (eleccion) {
-                case 1:
+                case 1:// se editan los datos menos la clave del funcionario
             mostrarDatos();
             jTFID.setEnabled(false);
             jPFClave.setText(jTFuncionario.getValueAt(fila, 7).toString());
@@ -565,7 +565,7 @@ public class Funcionario extends javax.swing.JFrame {
             jPFReClave.setEnabled(false);
             break;        
            
-                case 2:
+                case 2://solo se edita la clave del usuario 
            mostrarDatos();
            jPFClave.setEnabled(false);
            jPFReClave.setEnabled(false);
@@ -590,7 +590,7 @@ public class Funcionario extends javax.swing.JFrame {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         String idBuscar = JOptionPane.showInputDialog("Digite Codigo del Funcionario:");
         ArrayList<String> datosBusqueda = new ArrayList<>();
-        
+        // este metodo se busca el funcionario 
         if(idBuscar!=null)
         {
         datosBusqueda = DBFuncionario.buscarFuncionario(idBuscar);
@@ -599,7 +599,7 @@ public class Funcionario extends javax.swing.JFrame {
         if(datosBusqueda==null || datosBusqueda.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "codigo no existe", "Incorrecto", 2);
-        }else{
+        }else{// se pone todos los datos en una ventana para ser enseñada al usario
         String est=datosBusqueda.get(7).equals("1")?"Activo":"Inactivo";
         JOptionPane.showMessageDialog(null, "Funcionario:\nCodigo: "+idBuscar+"\nNombre: "+datosBusqueda.get(1)+"\nApellido: "+datosBusqueda.get(2)
         +"\nCelular: "+datosBusqueda.get(3)+"\nCorreo: "+datosBusqueda.get(4)+"\nDirección: "+datosBusqueda.get(5)+"\nUsuario: "+datosBusqueda.get(6)+"\nEstado: "+est);
@@ -608,12 +608,12 @@ public class Funcionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-       dispose();
+       dispose();//se cierran las ventanas
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         fila=jTFuncionario.getSelectedRow();
-        if(fila!=-1){
+        if(fila!=-1){// se cambia el estado del funcionario y despues se actualiza la tabla 
             int id=Integer.parseInt(jTFuncionario.getValueAt(fila, 0).toString());
             boolean validarEliminar = DBFuncionario.modificarEstadoFuncionario(String.valueOf(id));
             if(validarEliminar!=false)

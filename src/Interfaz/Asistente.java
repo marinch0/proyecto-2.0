@@ -48,7 +48,7 @@ public class Asistente extends javax.swing.JFrame {
         
         setLocationRelativeTo(null);
         this.setResizable(false);
-        this.getContentPane().setBackground(Color.WHITE);
+        this.getContentPane().setBackground(Color.WHITE);// el background totalmente en blanco
         jTAsis.setBackground(Color.WHITE);
         
         DBAsistente = new AsistenteDAO();
@@ -69,7 +69,7 @@ public class Asistente extends javax.swing.JFrame {
     }
 
     
-    public void bloquear(){
+    public void bloquear(){// se bloquean las cajas para evitar la modificacion de las mismas 
         jTFID.setEnabled(false);
         jTFNombre.setEnabled(false);
         jTFApellido.setEnabled(false);
@@ -83,7 +83,7 @@ public class Asistente extends javax.swing.JFrame {
         jBBuscar.setEnabled(true);
     }
     
-    public void activar(){
+    public void activar(){//se activan las cajas para permitir la modificacion 
         jTFID.setEnabled(true);
         jTFNombre.setEnabled(true);
         jTFApellido.setEnabled(true);

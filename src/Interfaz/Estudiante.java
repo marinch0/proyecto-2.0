@@ -21,7 +21,7 @@ import modelo.EstudianteVO;
  * @author SFS
  */
 public class Estudiante extends javax.swing.JFrame {
-
+//se inicializan las variables que utilizarimos 
     String codEst,idEst,nombreEst,apellidoEst,celularEst,correoEst,direccionEst,gradoEst,ciudadEst,nombreAcu,celularAcu,correoAcu,direccionAcu,nombreFunc,idFunc;
     int fila,eleccion;
     boolean estadoEst;
@@ -32,7 +32,7 @@ public class Estudiante extends javax.swing.JFrame {
     ArrayList<String> listaEst;
     boolean validacionGuardar=false;
     
-    public Estudiante(String idFunc,String nomFunc) {
+    public Estudiante(String idFunc,String nomFunc) {//en este se pone los backgrounds de color blanco para que resalte
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
@@ -56,7 +56,7 @@ public class Estudiante extends javax.swing.JFrame {
          }
     }
 
-     public void bloquear(){
+     public void bloquear(){// se bloquena las cajas pra evittar el uso de las mismas 
         jTFCodigo.setEnabled(false);
         jTFID.setEnabled(false);
         jTFNombre.setEnabled(false);
@@ -76,7 +76,7 @@ public class Estudiante extends javax.swing.JFrame {
         jBBuscar.setEnabled(true);
     }
     
-    public void activar(){
+    public void activar(){//se activan las cajas para que permitir su uso
         jTFCodigo.setEnabled(true);
         jTFID.setEnabled(true);
         jTFNombre.setEnabled(true);
@@ -100,7 +100,7 @@ public class Estudiante extends javax.swing.JFrame {
     
      public void llamarDatosTabla(){
         
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel();//se añade los nombres en la tabla ademas de las medidas que ocupara 
         modelo.addColumn("COD");
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
@@ -133,7 +133,7 @@ public class Estudiante extends javax.swing.JFrame {
         this.jTEst.getColumn(jTEst.getColumnName(12)).setMinWidth(0);
         this.jTEst.getColumn(jTEst.getColumnName(12)).setMaxWidth(0);
               
-        
+        //se transportan los datos de la base de datos para ingresarlo a las tablas 
         listaEst = DBEstudiante.listaEstudiante();
         
         for (int i = 0; i < listaEst.size(); i=i+13) {
@@ -162,7 +162,7 @@ public class Estudiante extends javax.swing.JFrame {
       public boolean guardarDatos(){
         
         boolean validar= validarDatos();
-        
+        // se toman los datos de las casillas 
          if(validar!=false)
         {
             codEst = jTFCodigo.getText();
@@ -180,10 +180,10 @@ public class Estudiante extends javax.swing.JFrame {
             direccionAcu = jTFDireAcu.getText();
             estadoEst = true;
             
-            
+            // se pasan los datos a la conexion para despues ser transportados a la base de datos 
             transDatosEst = new EstudianteVO(codEst,idEst, nombreEst,apellidoEst,celularEst,correoEst,direccionEst, gradoEst,ciudadEst,nombreAcu,celularAcu,correoAcu,direccionAcu,idFunc,estadoEst);
             DBEstudiante.ingresarEstudiante(transDatosEst);
-            llamarDatosTabla();
+            llamarDatosTabla();// se refresca la tabla 
             return true;        
         }
         return false;
@@ -192,7 +192,7 @@ public class Estudiante extends javax.swing.JFrame {
       public boolean editarDatos(){
          boolean validar= validarDatos();
         
-        if(validar!=false)
+        if(validar!=false)//
         {
             codEst = jTFCodigo.getText();
             idEst = jTFID.getText();
@@ -215,7 +215,7 @@ public class Estudiante extends javax.swing.JFrame {
         return false;
     }
       
-      public void mostrarDatos(){
+      public void mostrarDatos(){//se pasan los datos a las casillas
             jTFCodigo.setText(jTEst.getValueAt(fila, 0).toString());
             jTFID.setText(jTEst.getValueAt(fila, 1).toString());
             jTFNombre.setText(jTEst.getValueAt(fila, 2).toString());
@@ -238,7 +238,7 @@ public class Estudiante extends javax.swing.JFrame {
       
       
        public boolean validarDatos(){
-         if(jTFCodigo.getText().isEmpty())
+         if(jTFCodigo.getText().isEmpty())//es la validacion de las cajas para que las cajas importantes no queden en blanco 
          {
              JOptionPane.showMessageDialog(null, "Ingresar Código", "Error caja Vacia",JOptionPane.ERROR_MESSAGE);
              jTFCodigo.requestFocus();
@@ -297,7 +297,7 @@ public class Estudiante extends javax.swing.JFrame {
          
      }
        
-       public void limpiarCajas(){
+       public void limpiarCajas(){//se ponen las cajas en ceros
          jTFCodigo.setText(null);
          jTFID.setText(null);
          jTFNombre.setText(null);
@@ -688,9 +688,9 @@ public class Estudiante extends javax.swing.JFrame {
 
             if(datosBusqueda==null || datosBusqueda.isEmpty())
             {
-                JOptionPane.showMessageDialog(null, "codigo no existe", "Incorrecto", 2);
+                JOptionPane.showMessageDialog(null, "codigo no existe", "Incorrecto", 2);//validacion de codigo incorrecto
             }else{
-                String est=datosBusqueda.get(13).equals("1")?"Activo":"Inactivo";
+                String est=datosBusqueda.get(13).equals("1")?"Activo":"Inactivo";//se carga una ventana con la informacion del codigo que buscamos anteriormente 
                 JOptionPane.showMessageDialog(null, "Estudiante:\nCódigo: "+idBuscar+"\nIdentificación: "+datosBusqueda.get(1)+"\nNombre: "+datosBusqueda.get(2)+"\nApellido: "+datosBusqueda.get(3)
                     +"\nCelular: "+datosBusqueda.get(4)+"\nCorreo: "+datosBusqueda.get(5)+"\nDirección: "+datosBusqueda.get(6)+"\nGrado: "+datosBusqueda.get(7)+"\nCiudad: "+datosBusqueda.get(8)+"\nAcudiente: "+datosBusqueda.get(9)
                         +"\nCel Acu: "+datosBusqueda.get(10)+"\nCorreo Acu: "+datosBusqueda.get(11)+"\nDirección Acu: "+datosBusqueda.get(12)+"\nEstado: "+est);
@@ -701,19 +701,19 @@ public class Estudiante extends javax.swing.JFrame {
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         validacionGuardar=true;
         fila=jTEst.getSelectedRow();
-        if(fila!=-1){
+        if(fila!=-1){// llama los metodos para llenar las casillas
             mostrarDatos();
             activar();
             jTFID.setEnabled(false);
 
         }else{
-            JOptionPane.showMessageDialog(null, "No Selecciono Registro\nSeleccione en la tabla la fila que desea editar", "Error", 0);
-        }
+            JOptionPane.showMessageDialog(null, "No Selecciono Registro\nSeleccione en la tabla la fila que desea editar", "Error", 0);// si no se escogio algo en la tabla no se puede modificar 
+        }                                                          
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         if(validacionGuardar==false){
-
+// este boton llama los metodos para enviar los datos a conexion limpia las cajas y activa el boton "nuevo"
             boolean validarGuardar = guardarDatos();
             if(validarGuardar!=false){
                 bloquear();
@@ -734,12 +734,12 @@ public class Estudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        activar();
+        activar();//llama el metodo para activar todas las cajas
         jTFCodigo.requestFocus();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        fila=jTEst.getSelectedRow();
+        fila=jTEst.getSelectedRow();//la fila seleccionada se le cambia el estado en la base de datos y se refresca la tabla para que no aparezca
         if(fila!=-1){
             boolean validarEliminar = DBEstudiante.modificarEstadoEstudiante(jTEst.getValueAt(fila, 0).toString());
             if(validarEliminar!=false)
@@ -753,7 +753,7 @@ public class Estudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-        dispose();
+        dispose();//cierra la ventana 
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jTFIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFIDKeyTyped

@@ -52,7 +52,7 @@ public class SOAT extends javax.swing.JFrame {
     private FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Archivo de Imagen", "jpg");
     
-    public SOAT(String idFunc,String nomFunc,VehiculoVO datosVeh,boolean datoVentana) {
+    public SOAT(String idFunc,String nomFunc,VehiculoVO datosVeh,boolean datoVentana) {// se pone todo en blanco se actualiza la tabla 
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
@@ -88,7 +88,7 @@ public class SOAT extends javax.swing.JFrame {
     }
 
        
-     public void bloquear(){
+     public void bloquear(){// se bloquean las casillas
         jTFCodigo.setEnabled(false);
         jCBAseg.setEnabled(false);
         jDCExp.setEnabled(false);
@@ -102,7 +102,7 @@ public class SOAT extends javax.swing.JFrame {
                
     }
      
-     public void activar(){
+     public void activar(){// se activan las casillas 
         jTFCodigo.setEnabled(true);
         jCBAseg.setEnabled(true);
         jDCExp.setEnabled(true);
@@ -125,7 +125,7 @@ public class SOAT extends javax.swing.JFrame {
         }
     }
      
-     public void llamarDatosTabla(){
+     public void llamarDatosTabla(){//llama los datos de la conexion 
         
         modelo = new DefaultTableModel();
         modelo.addColumn("Codigo");
@@ -154,7 +154,7 @@ public class SOAT extends javax.swing.JFrame {
         }
     }
      
-      public boolean validarDatos(){
+      public boolean validarDatos(){// vailda que los datos no queden vacios 
         
         if(jTFCodigo.getText().equals("")||jTFCodigo.getText().equals(" ")||jTFCodigo.getText().equals(null)){
             JOptionPane.showMessageDialog(null, "No Ingreso Código", "Error de selección",JOptionPane.ERROR_MESSAGE);
@@ -204,7 +204,7 @@ public class SOAT extends javax.swing.JFrame {
         return null;
     }  
       
-     public void MostrarLicencia(){
+     public void MostrarLicencia(){//carga la imgaen de la licencia en una nueva interfaz
         VerLicencia linc=new VerLicencia();
         linc.cargarImg(cargarFoto(rutaFotoSoat, 2));
         linc.setVisible(true);  
@@ -235,7 +235,7 @@ public class SOAT extends javax.swing.JFrame {
         
         return newIcon;
     }
-    public void fechaExp(){
+    public void fechaExp(){// se pasa a un formato al decha de expedicion 
             String formato = jDCExp.getDateFormatString();
             java.util.Date date = jDCExp.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
@@ -278,7 +278,7 @@ public class SOAT extends javax.swing.JFrame {
                                  
         }          
       public boolean guardarDatos(){
-        
+//se toma las cariables en las cuales se guardo todo y se envian a conexion         
         boolean validar= validarDatos();
         
         if(validar!=false)
@@ -303,7 +303,7 @@ public class SOAT extends javax.swing.JFrame {
         return false;
     }
     
-     public void limpiarCajas(){
+     public void limpiarCajas(){//se ponen las cajas en cero 
          jTFCodigo.setText(null);
          jCBAseg.setSelectedIndex(0);
          jLFotoVig.setIcon(null);
@@ -336,7 +336,7 @@ public class SOAT extends javax.swing.JFrame {
         return false;
     }
     
-    public void mostrarDatos(){
+    public void mostrarDatos(){// se carga la tabla con los datos 
             jTFCodigo.setText(jTSoat.getValueAt(fila, 0).toString());
             jCBAseg.setSelectedItem(jTSoat.getValueAt(fila, 1).toString());
             fechaExp=java.sql.Date.valueOf(jTSoat.getValueAt(fila, 2).toString());
@@ -619,7 +619,7 @@ public class SOAT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBFotoLicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFotoLicActionPerformed
-        eleccionFoto=1;
+        eleccionFoto=1;//foto del conductor 
         jLFotoVig.setIcon(subirFoto());
     }//GEN-LAST:event_jBFotoLicActionPerformed
 
@@ -628,8 +628,8 @@ public class SOAT extends javax.swing.JFrame {
     }//GEN-LAST:event_jBVerActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        fila=jTSoat.getSelectedRow();
-        if(fila!=-1){
+        fila=jTSoat.getSelectedRow();// la linea seleccionada es cambiada a estado cero 
+        if(fila!=-1){                //y se actualiza la tabla 
             int id=Integer.parseInt(jTSoat.getValueAt(fila, 0).toString());
             boolean validarEliminar = DBSoat.modificarEstadoSOAT(id);
             if(validarEliminar!=false)
@@ -652,10 +652,10 @@ public class SOAT extends javax.swing.JFrame {
 
             if(datosBusqueda==null || datosBusqueda.isEmpty())
             {
-                JOptionPane.showMessageDialog(null, "codigo no existe", "Incorrecto", 2);
+                JOptionPane.showMessageDialog(null, "codigo no existe", "Incorrecto", 2);//valida que la busqueda sea correcta 
             }else{
                 String aseguradora;
-                try {
+                try {//muestra los datos de el codigo encontrado
                     String est=datosBusqueda.get(5).equals("1")?"Activo":"Inactivo";
                     aseguradora=DBAseg.buscarAseguradora(Integer.parseInt(datosBusqueda.get(1)));
                     JOptionPane.showMessageDialog(null, "SOAT:\nCodigo: "+idBuscar+"\nAseguradora: "+aseguradora+"\nFecha Expedición: "+datosBusqueda.get(2)
@@ -681,8 +681,8 @@ public class SOAT extends javax.swing.JFrame {
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        if(validacionGuardar==false){
-
+        if(validacionGuardar==false){//se bajan los datos de las casillas son enviadas a conexion y a la tabla 
+                                     //se limpian las cajas  y se deja activo solo el boton "nuevo"
             boolean validarGuardar = guardarDatos();
             if(validarGuardar!=false){
                 bloquear();
@@ -703,13 +703,13 @@ public class SOAT extends javax.swing.JFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        activar();
+        activar();//activa las casillas y algunos botones 
         jTFCodigo.requestFocus();
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
         
-           if(datoVen==true){
+           if(datoVen==true){//se valida si esta ingresando un soat o si se desea utilizar uno ya ingresado 
                  int opcion=Integer.parseInt(JOptionPane.showInputDialog("Seleccionar Código SOAT:\n1. Ultimo registro\n2. Seleccionar un Registro de la tabla"));
                  switch (opcion) {
                    case 1:
